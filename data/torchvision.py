@@ -18,10 +18,10 @@ pil_img = img.KlassenName.VariableName # Replace with the actual variable name f
 
 # Define transform ONLY for the TRAINING!
 trainingTransforms = v2.Compose([
-    v2.RandomResizedCrop(size=(224, 224)), antialias=True,
+    v2.RandomResizedCrop(size=(224, 224), antialias=True),
     v2.RandomHorizontalFlip(p=0.5),
     v2.ToDtype(torch.float32, scale=True),
-    v2.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225)
+    v2.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
 ])
 
 transformedImg = trainingTransforms(pil_img)
@@ -42,7 +42,7 @@ img = torch.randint(0, 256, size=(3, H, W), dtype=torch.uint8)  # Example image 
 boxes = torch.randint(0, H // 2, size=(3, 4))  # Example bounding boxes we could combine it with plt from above
 boxes[:, 2:] += boxes[:, :2]  # Ensure x2 > x1 and y2 > y1
 boxes = tv_tensors.BoundBoxes(boxes, format="XYXY", image_size=(H, W)) # H and W need to be defined somewhere
-img, boxes = transforms(img, boxes)  # Apply some transforms
-output_dict = transforms({"image": img, "boxes": boxes})  # Apply same transforms to image and boxes
+img, boxes = trainingTransforms(img, boxes)  # Apply some transforms
+output_dict = trainingTransforms({"image": img, "boxes": boxes})  # Apply same transforms to image and boxes
 
 # Guess we can just run the file from main, and let it work. Dont necessarily need to define/call anything here?
