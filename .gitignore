@@ -5,7 +5,10 @@
 
 # dotenv files
 .env
+# custom ignores
 .venv/
+build/
+
 
 # User-specific files
 *.rsuser
