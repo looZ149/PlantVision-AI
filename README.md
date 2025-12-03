@@ -1,20 +1,27 @@
 # ImageAI
-## Kernideen:
+# PlantVision AI – Bilderkennung für Pflanzenarten 🌱
 
-## Tensoren: Mehrdimensionale Arrays (ähnlich NumPy), aber mit GPU-Support (.to("cuda")).
+## Projektbeschreibung
 
-## Autograd: Automatische Berechnung von Gradienten -> du musst Ableitungen nicht selbst herleiten.
+PlantVision AI ist eine Anwendung zur automatischen Erkennung von Pflanzenarten anhand von Bildern.
+Ein Nutzer lädt ein Foto einer Pflanze hoch, und unser Modell gibt die wahrscheinlichste Art aus, inkl. einer Konfidenzangabe.
 
-## nn.Module: Baustein für eigene Modelle (z.B. class MyNet(nn.Module): ...).
+## Ziele
 
-## Optimierer: z.B. Adam, SGD für Gewichtsaktualisierung.
+- Aufbau eines Deep-Learning-Modells zur Klassifikation von Pflanzenarten
+- Bereitstellung eines REST-Backends zur Bildanalyse
+- Entwicklung eines einfachen Frontends zur Interaktion für Endnutzer
+- Saubere Teamarbeit mit klaren Modulen, Git-Workflow und Dokumentation
 
-## Läuft auf CPU und GPU, wenn du CUDA hast.
+---
 
-## Typische Aufgaben damit:
+## Tech-Stack
 
-## CNNs für Bilder (Klassifikation, Objekterkennung, Segmentation)
+- **Programmiersprache:** Python
+- **ML / Deep Learning:** PyTorch, Torchvision
+- **Bildverarbeitung:** Pillow (optional OpenCV)
+- **Backend:** FastAPI oder Flask (REST-API)
+- **Frontend:** einfache Weboberfläche (HTML/CSS/JS oder React)
+- **Sonstiges:** Git, virtualenv/conda, ggf. Docker
 
-## RNN/Transformer für Text
-
-## Custom Trainings-Loops (for epoch in range(...): ...)
+---
