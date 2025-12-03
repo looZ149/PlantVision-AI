@@ -19,7 +19,12 @@ class PlantClassifier(nn.Module):
         return out
     
 
-def create_plant_classifier(num_classes: int, image_channels: int = 3, image_height: int = 64, image_width: int = 64):
+def create_plant_classifier(
+        num_classes: int,
+        image_channels: int = 3,
+        image_height: int = 64,
+        image_width: int = 64
+):
     input_size = image_channels * image_height * image_width
     model = PlantClassifier(input_size, num_classes)
-    return model   
+    return model        
