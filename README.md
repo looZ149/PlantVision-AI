@@ -18,3 +18,6 @@
 ## RNN/Transformer für Text
 
 ## Custom Trainings-Loops (for epoch in range(...): ...)
+
+
+# test 
