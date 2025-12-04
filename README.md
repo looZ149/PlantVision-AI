@@ -1,4 +1,3 @@
-# ImageAI
 # PlantVision AI – Bilderkennung für Pflanzenarten 🌱
 
 ## Projektbeschreibung
