@@ -39,6 +39,7 @@ trainingFlowersTransforms = v2.Compose([
         saturation=0.2,
         hue=0.2
     ),
+    v2.ToImage(),
     v2.ToDtype(torch.float32, scale=True),
     v2.Normalize(
         mean=[0.485, 0.456, 0.406],
@@ -49,6 +50,7 @@ trainingFlowersTransforms = v2.Compose([
 validationFlowersTransforms = v2.Compose([
     v2.Resize((256, 256)),
     v2.CenterCrop(224),
+    v2.ToImage(),
     v2.ToDtype(torch.float32, scale=True),
     v2.Normalize(
         mean=[0.485, 0.456, 0.406],

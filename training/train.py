@@ -5,6 +5,9 @@ import torch.optim as optim
 from models.plant_model import create_resnet_model, save_model
 from data.torchvision import get_dataloaders
 
+criterion = nn.CrossEntropyLoss()
+num_epochs = 10
+
 def train(
         num_classes: int = 102,
         batch_size: int = 32,
@@ -27,7 +30,7 @@ def train(
     model.to(device)
 
     # Define loss function and optimizer
-    criterion = nn.CrossEntropyLoss()
+    
 
     #optimize trainable parameters only
     optimizer = optim.Adam(
@@ -61,7 +64,7 @@ def train(
             correct += (predicted == labels).sum().item()
 
             if batch_idx % 10 == 0:
-                print(f"Batch {batch_idx}: Loss = {los.item():.4f}")
+                print(f"Batch {batch_idx}: Loss = {loss.item():.4f}")
 
         epoch_loss = running_loss / total
         epoch_acc = correct / total * 100
