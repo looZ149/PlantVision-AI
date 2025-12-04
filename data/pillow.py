@@ -1,9 +1,8 @@
 
-from __future__ import annotations
 
+from __future__ import annotations
 from pathlib import Path
 from typing import Callable, Iterable, Literal, Optional, Tuple
-
 import numpy as np
 from PIL import Image, ImageOps
 from PIL.Image import Resampling
