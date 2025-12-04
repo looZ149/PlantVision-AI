@@ -8,7 +8,8 @@
 # custom ignores
 .venv/
 build/
-
+dataset/
+img_to_Torch/
 
 # User-specific files
 *.rsuser

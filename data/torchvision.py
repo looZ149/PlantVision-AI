@@ -83,13 +83,13 @@ validationFlowersTransforms = v2.Compose([
 # Could add an additional 3rd transformsSet for test dataset. But most likely we can use validationTransforms? Has no augmentation, so should work.. probably?
 
 # In case we need Detection
-from torchvision import tv_tensors
-img = torch.randint(0, 256, size=(3, H, W), dtype=torch.uint8)  # Example image tensor
-boxes = torch.randint(0, H // 2, size=(3, 4))  # Example bounding boxes we could combine it with plt from above
-boxes[:, 2:] += boxes[:, :2]  # Ensure x2 > x1 and y2 > y1
-boxes = tv_tensors.BoundBoxes(boxes, format="XYXY", image_size=(H, W)) # H and W need to be defined somewhere
-img, boxes = trainingTransforms(img, boxes)  # Apply some transforms
-output_dict = trainingTransforms({"image": img, "boxes": boxes})  # Apply same transforms to image and boxes
+# from torchvision import tv_tensors
+# img = torch.randint(0, 256, size=(3, H, W), dtype=torch.uint8)  # Example image tensor
+# boxes = torch.randint(0, H // 2, size=(3, 4))  # Example bounding boxes we could combine it with plt from above
+# boxes[:, 2:] += boxes[:, :2]  # Ensure x2 > x1 and y2 > y1
+# boxes = tv_tensors.BoundBoxes(boxes, format="XYXY", image_size=(H, W)) # H and W need to be defined somewhere
+# img, boxes = trainingTransforms(img, boxes)  # Apply some transforms
+# output_dict = trainingTransforms({"image": img, "boxes": boxes})  # Apply same transforms to image and boxes
 
 # Guess we can just run the file from main, and let it work. Dont necessarily need to define/call anything here?
 
@@ -121,7 +121,10 @@ testDataset = datasets.Flowers102(
 
 # Dataloaders
 
-trainLoader = DataLoader(trainDataset, batch_size=32, shuffle=True)
-valLoader = DataLoader(validationDataset, batch_size=32, shuffle=True)
-testLoader = DataLoader(testDataset, batch_size=32, shuffle=True)
+def get_dataloaders(batch_size: int = 32):
+    train_loader = DataLoader(trainDataset, batch_size=batch_size, shuffle=True)
+    val_loader = DataLoader(validationDataset, batch_size=batch_size, shuffle=False)
+    test_loader = DataLoader(testDataset, batch_size=batch_size, shuffle=False)
+    return train_loader, val_loader, test_loader
+
 
