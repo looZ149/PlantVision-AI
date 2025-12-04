@@ -10,6 +10,7 @@
 build/
 dataset/
 img_to_Torch/
+plant_classifier.pth
 
 # User-specific files
 *.rsuser

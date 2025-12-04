@@ -1,3 +1,4 @@
+import os
 import torch
 import sys
 
@@ -7,10 +8,10 @@ from models.plant_model import create_resnet_model
 from data.torchvision import validationFlowersTransforms
 
 def load_trainied_model(
-        weights_path: str = "models/flower_resnet.pth",
+        weights_path: str = "plant_classifier.pth",
         num_classes: int = 102,
         device: str | torch.device = "cpu",
-) -> torch.nn.module:
+) -> torch.nn.Module:
     """
     creates a restnet-model & loads trainied weights.
     
@@ -29,7 +30,7 @@ def preprocess_image(image_path: Path) -> torch.Tensor:
 
     #loads and preprocesses an image for prediction.
 
-    if not image_path.exists():
+    if not os.path.exists(image_path):
         raise FileNotFoundError(f"Image not found at {image_path}")
     
     # Load image: Tensor [C, H, W] with dtype uint8
@@ -51,7 +52,7 @@ def preprocess_image(image_path: Path) -> torch.Tensor:
 def predict_image(
         
         image_path:str,
-        weights_path: str = "models/flower_resnet.pth",   #loads model and image for prediction and returns predicted class index.
+        weights_path: str = "plant_classifier.pth",   #loads model and image for prediction and returns predicted class index.
         num_classes: int = 102,
 
 ):

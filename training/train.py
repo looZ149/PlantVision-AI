@@ -79,7 +79,7 @@ def train(
     print(f"\nTraining abgeschlossen. Modell gespeichert unter: {model_out_path}")
 
 
-def evaluate(model: nn.Module, dataloader, crterion, device: torch.device):
+def evaluate(model: nn.Module, dataloader, criterion, device: torch.device):
     """
     Führt eine Evaluierung auf dem Validierungsdatensatz durch.
     Gibt (loss, accuracy) zurück.
