@@ -1,0 +1,104 @@
+import torch
+import sys
+
+from torchvision.io import read_image
+from pathlib import Path
+from models.plant_model import create_resnet_model
+from data.torchvision import validationFlowersTransforms
+
+def load_trainied_model(
+        weights_path: str = "models/flower_resnet.pth",
+        num_classes: int = 102,
+        device: str | torch.device = "cpu",
+) -> torch.nn.module:
+    """
+    creates a restnet-model & loads trainied weights.
+    
+    """
+    if isinstance(device, str):
+        device = torch.device(device)
+
+    model = create_resnet_model(num_classes=num_classes, pretrained=False)
+    state_dict = torch.load(weights_path, map_location=device)
+    model.load_state_dict(state_dict)
+    model.to(device)
+    model.eval()
+    return model
+
+def preprocess_image(image_path: Path) -> torch.Tensor:
+
+    #loads and preprocesses an image for prediction.
+
+    if not image_path.exists():
+        raise FileNotFoundError(f"Image not found at {image_path}")
+    
+    # Load image: Tensor [C, H, W] with dtype uint8
+    img = read_image(str(image_path))
+
+    # 3 channels expected
+    if img.shape[0] ==1:
+        img = img.repeat(3, 1, 1)  # convert grayscale to RGB by repeating channels
+    elif img.shape[0] ==4:
+        img = img[:3, :, :]  #only keep RGB channels
+
+    img = validationFlowersTransforms(img)  # Apply validation transforms
+
+    img = img.unsqueeze(0)  # Add batch dimension: [1, C, H, W]
+
+    return img
+
+
+def predict_image(
+        
+        image_path:str,
+        weights_path: str = "models/flower_resnet.pth",   #loads model and image for prediction and returns predicted class index.
+        num_classes: int = 102,
+
+):
+    
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    img_tensor = preprocess_image(image_path).to(device)
+    print(f"Using device: {device}")
+
+    image_path = Path(image_path)
+
+    # load model
+    print(f"Loading model from {weights_path}")
+    model = load_trainied_model(
+        weights_path=weights_path,
+        num_classes=num_classes,
+        device=device
+    )
+
+    print(f"Preprocessing image from {image_path}")
+
+    with torch.no_grad():
+        outputs = model(img_tensor)
+        probs = torch.softmax(outputs, dim=1)
+        confidence, pred_idx = torch.max(probs, dim=1)
+
+    pred_idx = pred_idx.item()
+    confidence = confidence.item()
+
+    print(f"Predicted class index: {pred_idx}")
+    print(f"Confidence: {confidence:.4f}") 
+
+
+def main():
+    if len(sys.argv) < 2:
+        print("Usage:")
+        print(" python predict.py pfad\\zu\\bild.jpg")
+        sys.exit(1)
+
+    image_path = sys.argv[1]
+    predict_image(image_path) 
+
+
+if __name__ == "__main__":
+    main()    
+
+
+
+    
+    
+    
