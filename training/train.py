@@ -72,7 +72,7 @@ def train(
         correct = 0
         total = 0
 
-        print(f"{Green}\n=== Epoche {epoch}/{num_epochs} ==={RESET}")
+        print(f"{Green}\n=== Epoche {epoch}/{NUM_EPOCHS} ==={RESET}")
 
         for batch_idx, (images, labels) in enumerate(train_loader, start=1):
             images = images.to(device)

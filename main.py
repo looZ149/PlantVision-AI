@@ -25,7 +25,7 @@ def main():
     elif choice == "2":
         train.train()
     elif choice == "3":
-        evaluate.evaluate(model, device,dataloader, criterion)
+        print("in Progress...")
     elif choice == "0":
         print("Exiting...")
         exit()
