@@ -3,6 +3,11 @@ import torch
 from data.pillow import load_image, make_eval_pipeline, to_numpy, iter_images
 ## if we just do from pillow import instead data.pillow we can get a naming conflict (apparently thats the issue?) should be fixed this way on any
 
+Red = "\033[31m"
+Green = "\033[32m"
+Yellow = "\033[33m"
+RESET = "\033[0m"
+
 #Pipeline erzeugen (wie torchvision transforms)
 #Happens right on import by main.py
 pipeline = make_eval_pipeline(
@@ -17,7 +22,7 @@ output = Path("img_to_Torch") # Ausgabeordner
 output.mkdir(exist_ok=True)
 
 for image_path in iter_images(root):
-    print("Bearbeite:", image_path)
+    print(f"{Red}Bearbeite:{RESET}", f"{Yellow}{image_path}{RESET}")
 
 #Bild laden
     img = load_image(image_path)
@@ -33,4 +38,6 @@ for image_path in iter_images(root):
     save_path = output / (image_path.stem + ".pt")
     torch.save(tensor, save_path)
 
-print("Fertig!")
+print(f"{Green}Fertig!{RESET}")
+
+print(f"{Green}Alle Bilder wurden im Ordner img_to_Torch als .pt Dateien gespeichert.{RESET}")

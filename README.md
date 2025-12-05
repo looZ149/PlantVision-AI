@@ -76,7 +76,7 @@ Ein Nutzer lädt ein Foto einer Pflanze hoch, und unser Modell gibt die wahrsche
   - Loss: `nn.CrossEntropyLoss`
   - Optimizer: z.B. `torch.optim.Adam` oder `SGD`
   - Training über X Epochen (z.B. 5–10)
-  - am Ende Gewichte speichern (`save_model(...)` → z.B. `models/flower_resnet.pth`)
+  - am Ende Gewichte speichern (`save_model(...)` → z.B. `models/Plant_classifier.pth`)
 - Optional: einfache Konsolenausgabe für Loss/Accuracy pro Epoche
 
 ---
@@ -87,7 +87,9 @@ Ein Nutzer lädt ein Foto einer Pflanze hoch, und unser Modell gibt die wahrsche
 - `predict.py` im Projektroot oder `predict/predict.py`
 
 **Aufgaben:**
-- Modell über `load_model("models/flower_resnet.pth", num_classes=...)` laden
+- Modell über `load_model` laden
 - Bildpfad als Argument entgegennehmen:
   ```bash
   python predict.py path/to/image.jpg
+
+### 5. Startmenü 
