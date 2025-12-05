@@ -6,13 +6,14 @@ from torchvision.io import read_image
 from pathlib import Path
 from models.plant_model import create_resnet_model
 from data.torchvision import validationFlowersTransforms, get_flowers_names
+from config import NUM_CLASSES, MODEL_PATH
 
 Model_Path = "models/plant_classifier.pth"
 
 
 def load_trained_model(
         weights_path: str = Model_Path,
-        num_classes: int = 102,
+        num_classes: int = NUM_CLASSES,
         device: str | torch.device = "cpu",
 ) -> torch.nn.Module:
     """
@@ -56,8 +57,8 @@ def preprocess_image(image_path: str | Path) -> torch.Tensor:
 def predict_image(
         
         image_path:str,
-        weights_path: str = "plant_classifier.pth",   #loads model and image for prediction and returns predicted class index.
-        num_classes: int = 102,
+        weights_path: str = MODEL_PATH,   #loads model and image for prediction and returns predicted class index.
+        num_classes: int = NUM_CLASSES,
         
 
 ):
