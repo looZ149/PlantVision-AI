@@ -6,7 +6,7 @@ NUM_CLASSES = 102
 #Training parameters
 BATCH_SIZE = 32
 LEARNING_RATE = 1e-3
-NUM_EPOCHS  = 1
+NUM_EPOCHS  = 5
 SEED = 102
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")

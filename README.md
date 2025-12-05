@@ -93,3 +93,13 @@ Ein Nutzer lädt ein Foto einer Pflanze hoch, und unser Modell gibt die wahrsche
   python predict.py path/to/image.jpg
 
 ### 5. Startmenü 
+
+╔══════════════════════════════════╗
+║            MAIN MENU             ║
+╠══════════════════════════════════╣
+║ 1) Load image to analyze by AI   ║
+║ 2) Train Plantmodel              ║
+║ 3) Validate Plantmodel           ║
+║ 0) Exit                          ║
+╚══════════════════════════════════╝
+
