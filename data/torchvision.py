@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 from torch.utils.data import DataLoader
 from torchvision import datasets
 from torchvision.transforms import v2
-from torchvision.io import decode_image
 
 plt.rcParams["savefig.bbox"] = 'tight' # only need that for object detection
 

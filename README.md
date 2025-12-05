@@ -21,7 +21,7 @@ Ein Nutzer lädt ein Foto einer Pflanze hoch, und unser Modell gibt die wahrsche
 - **Bildverarbeitung:** Pillow (optional OpenCV)
 - **Backend:** FastAPI oder Flask (REST-API)
 - **Frontend:** einfache Weboberfläche (HTML/CSS/JS oder React)
-- **Sonstiges:** Git, virtualenv/conda, ggf. Docker
+- **Sonstiges:** Git
 
 ---
 ## RNN/Transformer für Text

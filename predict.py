@@ -34,8 +34,8 @@ def preprocess_image(image_path: str | Path) -> torch.Tensor:
 
     #loads and preprocesses an image for prediction.
     image_path = Path(image_path)
-
-    if not image_path.exists(image_path):
+    
+    if not image_path.exists():
         raise FileNotFoundError(f"Image not found at {image_path}")
     
     # Load image: Tensor [C, H, W] with dtype uint8
@@ -102,12 +102,8 @@ def predict_image(
 
 
 def main(image):
-    if len(sys.argv) < 2:
-        print("Usage: python predict.py <image_path>")
-        sys.exit(1)
-
-    image_path = sys.argv[1]    
-
+    
+    predict_image(image)
 
 if __name__ == "__main__":
     main()    
